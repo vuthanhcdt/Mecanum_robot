@@ -1,0 +1,6 @@
+<launch>
+  <node pkg="kinetic_inv" type="kinetic_inv" name="kinetic_inv" required="true" output = "screen" > 
+  <param name="topic_vt" value="cmd_vel"/>
+  <param name="topic_v" value="van_toc_banh"/>
+  </node>
+</launch>

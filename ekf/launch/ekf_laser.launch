@@ -1,0 +1,19 @@
+
+<launch>
+
+    <include file="$(find ekf)/launch/laser_scan_matcher.launch"/>
+ <include file="$(find kinetic_inv)/launch/kinetic_inv.launch"/>
+  <include file="$(find odometry)/launch/odometry.launch"/>
+  
+<node name="odomtransformer" pkg="navigation" type="odomtransformer.py" output="screen">
+		<param name="odom_input" value="/odom" />
+		<param name="tf_output" value="/base_link" />
+  </node>
+
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization"> 
+            <remap from="odometry/filtered" to="odom" />
+            <rosparam command="load" file="$(find ekf)/param/ekf_laser.yaml" />
+    </node>
+
+    <!-- <node pkg="rviz" type="rviz" name="rviz" args="-d $(find ekf)/rviz/ekf.rviz" required="true"/> -->
+</launch>
