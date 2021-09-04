@@ -1,0 +1,9 @@
+<launch>
+  <node pkg="odometry" type="odometry" name="odometry" required="true" output = "screen" > 
+    <param name="port" value="/dev/ttyUSB0"/>
+    <param name="topic_odom" value="odom_encoder"/>
+    <param name="topic_imu" value="IMU"/>
+      <param name="fixed_frame_odom" value="odom"/>
+    <param name="topic_v" value="van_toc_banh"/>
+  </node>
+</launch>
